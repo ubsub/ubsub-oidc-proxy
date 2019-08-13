@@ -32,7 +32,7 @@ if (config.static) {
   app.use(express.static(path.join(__dirname, 'public')));
 }
 
-app.use(config.path, oidcproxy());
+app.use(config.path, oidcproxy(config.oidc));
 
 app.listen(config.port, () => {
   console.log(`Listening on http://0.0.0.0:${config.port}`);
