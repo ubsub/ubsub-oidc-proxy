@@ -6,7 +6,7 @@ module.exports = require('rc')('oidcproxy', {
     client_id: null,
     client_secret: null,
     // Where to request redirect back to
-    redirect_base: 'http://localhost:8080/auth',
+    redirect_base: 'http://localhost:3050/auth',
     // What scopes to request
     scope: 'user',
     // Where to store the token
@@ -15,7 +15,8 @@ module.exports = require('rc')('oidcproxy', {
     parseStore: true,
   },
   backend: {
-    port: 8080, // If proxying the request locally (as opposed to middleware), the port
+    // If proxying the request locally (as opposed to middleware), the port
+    port: 3050,
     // Path for the authentication endpoint
     path: '/auth',
     // Static relative path to serve from

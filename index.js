@@ -1,5 +1,6 @@
 const URL = require('url');
 const express = require('express');
+const axios = require('axios');
 const uuid = require('uuid/v4');
 const defaultConfig = require('./config');
 
@@ -19,23 +20,20 @@ module.exports = function buildOidcProxy(opts = defaultConfig.oidc) {
     res.redirect(URL.format(uri));
   });
 
-  router.get('/validate', (req, res) => {
+  router.get('/validate', (req, res, next) => {
     const state = req.query.state;
     const code = req.query.code;
     // TODO: Validate state
-    const uri = URL.parse(opts.token_url, true);
-    if (!uri.query) {
-      uri.query = {};
-    }
-    uri.query.client_id = opts.client_id;
-    uri.query.client_secret = opts.client_secret;
-    uri.query.grant_type = 'authorization_code';
-    uri.query.code = code;
-    axios.get(URL.format(uri))
-      .then(resp => {
-        // TODO: Validate JWT
-        res.send(resp.data);
-      });
+
+    axios.post(opts.token_url, {
+      client_id: opts.client_id,
+      client_secret: opts.client_secret,
+      grant_type: 'authorization_code',
+      code: code,
+    }).then(resp => {
+      // TODO: Validate JWT
+      res.send(resp.data);
+    }).catch(next);
   });
 
   return router;
