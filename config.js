@@ -3,7 +3,7 @@ module.exports = require('rc')('oidcproxy', {
     client_id: null,
     client_secret: null,
     request_scope: null,
-  }
+  },
   redirect_base: null,
   store: 'cookie',
   parseStore: true,
