@@ -7,6 +7,8 @@
     "ubsub-oidc-proxy": "./cli.js"
   },
   "scripts": {
+    "start": "./cli.js",
+    "dev": "nodemon cli.js",
     "lint": "eslint .",
     "test": "npm run lint",
     "release": "npm version patch && git push && git push --tags && npm publish"
@@ -21,11 +23,13 @@
   "dependencies": {
     "axios": "^0.19.0",
     "express": "^4.17.1",
-    "rc": "^1.2.8"
+    "rc": "^1.2.8",
+    "uuid": "^3.3.2"
   },
   "devDependencies": {
     "eslint": "^6.1.0",
     "eslint-config-airbnb-base": "^14.0.0",
-    "eslint-plugin-import": "^2.18.2"
+    "eslint-plugin-import": "^2.18.2",
+    "nodemon": "^1.19.1"
   }
 }

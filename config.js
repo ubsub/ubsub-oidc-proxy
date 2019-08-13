@@ -1,9 +1,11 @@
 module.exports = require('rc')('oidcproxy', {
   oidc: {
+    auth_url: 'https://app.ubsub.io/oidc',
+    token_url: 'https://app.ubsub.io/oidc/token',
     client_id: null,
     client_secret: null,
-    request_scope: null,
-    redirect_base: null,
+    scope: 'user',
+    redirect_base: 'http://localhost:8080/auth',
     store: 'cookie',
     parseStore: true,
   },
