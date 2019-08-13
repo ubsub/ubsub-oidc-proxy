@@ -9,10 +9,13 @@ module.exports = require('rc')('oidcproxy', {
     store: 'cookie',
     parseStore: true,
   },
-  proxy: {
+  backend: {
     port: 8080, // If proxying the request locally (as opposed to middleware), the port
     path: '/auth',
     static: null,
-    forward: null,
+    proxy: { // config to http-proxy-middleware (http-proxy)
+      target: null,
+      changeOrigin: true,
+    },
   },
 });
