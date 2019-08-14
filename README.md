@@ -3,7 +3,6 @@
 [![Build Status](https://travis-ci.org/ubsub/ubsub-oidc-proxy.svg?branch=master)](https://travis-ci.org/ubsub/ubsub-oidc-proxy)
 [![npm](https://img.shields.io/npm/v/ubsub-oidc-proxy.svg)](https://www.npmjs.com/package/ubsub-oidc-proxy)
 [![npm](https://img.shields.io/npm/l/ubsub-oidc-proxy.svg)](https://www.npmjs.com/package/ubsub-oidc-proxy)
-[![Latest Documentation](https://doxdox.org/images/badge-flat.svg)](https://doxdox.org/)
 ![Snyk Vulnerabilities for npm package](https://img.shields.io/snyk/vulnerabilities/npm/ubsub-oidc-proxy.svg)
 
 The Ubsub OIDC proxy is a simple utility that can be used as a http server (for static files), a reverse-proxy (http endpoint), or as a middleware.  Given the correct configuration it will manage the OIDC authentication for ubsub, and store the result in a way the frontend can access and validate against it.
