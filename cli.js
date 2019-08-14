@@ -25,5 +25,5 @@ if (backend.static) {
 }
 
 app.listen(backend.port, () => {
-  console.log(`Listening on http://0.0.0.0:${backend.port}`);
+  console.log(`Listening on http://localhost:${backend.port}`);
 });
