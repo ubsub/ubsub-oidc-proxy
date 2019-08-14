@@ -26,6 +26,21 @@ redirect_base=http://example.com/auth
 scope=user,topic.*
 ```
 
+### Standalone
+
+As an easy way to test, you can run it standalone and it will serve a dummy-page.  This will make sure OIDC is set up correctly.
+
+```sh
+npm install -g ubsub-oidc-proxy
+ubsub-oidc-proxy --oidc.client_id=xxx --oidc.client_secret=xxx
+```
+
+or, if you're an `npx` fan...
+
+```sh
+npx ubsub-oidc-proxy --oidc.client_id=xxx --oidc.client_secret=xxx
+```
+
 ### As a file server
 
 If, for instance, you want to serve a folder of static files (eg `dist/`), you could install globally, or as module, and run:
