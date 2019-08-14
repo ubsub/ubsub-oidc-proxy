@@ -12,7 +12,7 @@ module.exports = require('rc')('oidcproxy', {
     // Where to store the token
     store: 'cookie',
     // If true, parse the JWT rather than passing directly
-    parseStore: true,
+    parseToken: true,
   },
   backend: {
     // If proxying the request locally (as opposed to middleware), the port

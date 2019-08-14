@@ -1,7 +1,6 @@
 #!/usr/bin/env node
 const path = require('path');
 const express = require('express');
-const axios = require('axios');
 const oidcRouter = require('./index');
 const { backend, oidc } = require('./config');
 
@@ -16,6 +15,8 @@ if (backend.static) {
   app.use(express.static(backend.static));
 } else if (backend.proxy && backend.proxy.target) {
   console.log(`Forwarding requests to ${backend.proxy}...`);
+
+  // eslint-disable-next-line global-require
   const proxy = require('http-proxy-middleware'); // optional dep
   app.use(proxy(backend.proxy));
 } else {
