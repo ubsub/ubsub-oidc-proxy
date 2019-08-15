@@ -72,7 +72,12 @@ module.exports = function buildOidcProxy(opts = defaultConfig.oidc) {
         console.log(`WARNING: Invalid store set ${opts.store}`);
       }
       res.redirect(opts.success_url);
-    }).catch(next);
+    }).catch((err) => {
+      if (opts.error_url) {
+        return res.redirect(opts.error_url);
+      }
+      return next(err);
+    });
   });
 
   return router;

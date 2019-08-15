@@ -16,6 +16,8 @@ module.exports = require('rc')('oidcproxy', {
     parseToken: true,
     // Where to redirect to upon success
     success_url: '/',
+    // Where to route on error. If no url, will pass error up next chain
+    error_url: null,
   },
   backend: {
     // If proxying the request locally (as opposed to middleware), the port
@@ -29,6 +31,10 @@ module.exports = require('rc')('oidcproxy', {
     proxy: {
       target: null,
       changeOrigin: true,
+    },
+    // Logging
+    log: {
+      format: 'short',
     },
   },
 });

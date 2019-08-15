@@ -1,10 +1,15 @@
 #!/usr/bin/env node
 const path = require('path');
 const express = require('express');
+const morgan = require('morgan');
 const oidcRouter = require('./index');
 const { backend, oidc } = require('./config');
 
 const app = express();
+
+if (backend.log && backend.log.format) {
+  app.use(morgan(backend.log.format));
+}
 
 // Authentication endpoint
 app.use(backend.path, oidcRouter(oidc));
