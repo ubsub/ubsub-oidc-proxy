@@ -67,7 +67,7 @@ module.exports = function buildOidcProxy(opts = defaultConfig.oidc) {
       });
     }).then((token) => {
       if (opts.store === 'cookie') {
-        res.cookie(opts.storeName, token);
+        res.cookie(opts.storeName, JSON.stringify(token));
       } else if (opts.store !== 'none') {
         console.log(`WARNING: Invalid store set ${opts.store}`);
       }

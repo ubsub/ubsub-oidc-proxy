@@ -1,10 +1,39 @@
 <html>
   <head>
     <title>ubsub-oidc-proxy</title>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/axios/0.19.0/axios.min.js"></script>
   </head>
   <body>
     <h1>OIDC Proxy</h1>
     <a href="/auth">Click here to authenticate</a>
+    <h2>Cookie</h2>
     <p><script>document.write(document.cookie);</script></p>
+    <h2>Token</h2>
+    <div id="token">Not set</div>
+    <h2>User</h2>
+    <div id="user">Not set</div>
+    <script>
+      function getCookie(name) {
+        var v = document.cookie.match('(^|;) ?' + name + '=([^;]*)(;|$)');
+        return v ? v[2] : null;
+      }
+      
+      const oidcState = getCookie('oidcState');
+      if (oidcState) {
+        const token = JSON.parse(decodeURIComponent(oidcState));
+        const tokenEle = document.getElementById('token');
+        tokenEle.innerHTML = JSON.stringify(token);
+
+        axios("https://router.ubsub.io/api/v1/user/" + token.jwt.sub, {
+          headers: {
+            Authorization: 'Bearer ' + token.access_token,
+          },
+        })
+        .then(resp => {
+          const userEle = document.getElementById('user');
+          userEle.innerHTML = JSON.stringify(resp.data, null, 2);
+        });
+      }
+    </script>
   </body>
 </html>

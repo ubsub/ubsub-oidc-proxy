@@ -90,6 +90,29 @@ At minimum, you need to set the following:
  * `redirect_base` Where OIDC flow should redirect back to upon finishing
  * `scope` (Optional) You probably want to request more scopes than just *user*
 
+## Using in client
+
+By default, once you have been authenticated the proxy will store the JSON blob in the cookie `oidcState` (*config.oidc.storeName*).
+
+This object looks like:
+
+```json
+{
+  "access_token": "long-access-token",
+  "id_token": "encoded.jwt.string",
+  "expires_in": "2069-08-15T01:09:36.105Z",
+  "token_type": "Bearer",
+  "jwt": {
+    "iat": 1565831376,
+    "aud": "test",
+    "iss": "app.ubsub.io",
+    "sub": "token-id"
+  }
+}
+```
+
+In javascript, you can make calls either back through the api proxy (if configured), or directly to the router if your application is allowed to make CORS requests.
+
 # Advanced usage
 
 ## Mounting path for high-performance static sites
