@@ -20,7 +20,7 @@ if (backend.static) {
   const proxy = require('http-proxy-middleware'); // optional dep
   app.use(proxy(backend.proxy));
 } else {
-  console.log('No backend config set via --static or --proxy, serving example...');
+  console.log('No backend config set via --backend.static or --backend.proxy.target, serving example...');
   app.use(express.static(path.join(__dirname, 'public')));
 }
 
