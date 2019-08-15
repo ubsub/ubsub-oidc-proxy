@@ -90,6 +90,26 @@ At minimum, you need to set the following:
  * `redirect_base` Where OIDC flow should redirect back to upon finishing
  * `scope` (Optional) You probably want to request more scopes than just *user*
 
+# Advanced usage
+
+## Mounting path for high-performance static sites
+
+There may be a case where you don't want the proxy to actually serve your content, but rather act simply at the auth endpoint and let something else serve the content (eg *nginx*).  To do this, any popular reverse-proxy will allow path-based proxying, and you simply need to proxy `backend.path`.
+
+For example:
+
+```
+server {
+  server_name example.com;
+  location / {
+    root /var/www;
+  }
+  location /auth {
+    proxy_pass localhost:3050;
+  }
+}
+```
+
 # License
 
 Copyright (c) 2019 Christopher LaPointe
