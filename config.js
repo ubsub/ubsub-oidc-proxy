@@ -8,7 +8,7 @@ module.exports = require('rc')('oidcproxy', {
     // Where to request redirect back to
     redirect_base: 'http://localhost:3050/auth',
     // What scopes to request
-    scope: 'user',
+    scope: 'user topic.*',
     // Where to store the token
     store: 'cookie',
     storeName: 'oidcState',
@@ -31,6 +31,12 @@ module.exports = require('rc')('oidcproxy', {
     proxy: {
       target: null,
       changeOrigin: true,
+    },
+    // By default, an endpoint /api will be exposed which will parse
+    // the cookie for you, and pass along your session information
+    apiProxy: {
+      path: '/api',
+      target: 'https://router.ubsub.io',
     },
     // Logging
     log: {

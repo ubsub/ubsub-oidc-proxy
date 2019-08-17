@@ -113,6 +113,12 @@ This object looks like:
 
 In javascript, you can make calls either back through the api proxy (if configured), or directly to the router if your application is allowed to make CORS requests.
 
+## API Proxy
+
+By default, the oidc-proxy will expose the `/api` endpoint, which will automatically parse the state cookie, and forward requests to the router scoped to your current user and token.
+
+You can use this endpoint on the frontend to avoid the need to worry about CORS, but be wary of the size of payload that may need to traverse your proxy and consider calling the router directly instead.
+
 # Advanced usage
 
 ## Mounting path for high-performance static sites

@@ -24,14 +24,12 @@
         const tokenEle = document.getElementById('token');
         tokenEle.innerHTML = JSON.stringify(token);
 
-        axios("https://router.ubsub.io/api/v1/user/" + token.jwt.sub, {
-          headers: {
-            Authorization: 'Bearer ' + token.access_token,
-          },
-        })
+        const userEle = document.getElementById('user');
+        axios.get("/api/")
         .then(resp => {
-          const userEle = document.getElementById('user');
           userEle.innerHTML = JSON.stringify(resp.data, null, 2);
+        }).catch(err => {
+          userEle.innerHTML = err;
         });
       }
     </script>
