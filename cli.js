@@ -15,6 +15,11 @@ if (backend.log && backend.log.format) {
 // Authentication endpoint
 app.use(backend.path, oidcRouter(oidc));
 
+// Api proxy
+if (backend.apiProxy && backend.apiProxy.target) {
+  app.use(backend.apiProxy.path, oidcApiProxy(backend.apiProxy.target, oidc.storeName));
+}
+
 // Proxying
 if (backend.static) {
   console.log(`Serving ${backend.static}...`);
@@ -28,11 +33,6 @@ if (backend.static) {
 } else {
   console.log('No backend config set via --backend.static or --backend.proxy.target, serving example...');
   app.use(express.static(path.join(__dirname, 'public')));
-}
-
-// Api proxy
-if (backend.apiProxy && backend.apiProxy.target) {
-  app.use(backend.apiProxy.path, oidcApiProxy(backend.apiProxy.target, oidc.storeName));
 }
 
 app.listen(backend.port, () => {
