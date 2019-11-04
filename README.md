@@ -22,7 +22,7 @@ See configuration below for full details.  As an easy-start, I recommend creatin
 client_id=xxx
 client_secret=xxx
 redirect_base=http://example.com/auth
-scope=user,topic.*
+scope=user topic.*
 ```
 
 ### Standalone
