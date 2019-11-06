@@ -1,6 +1,6 @@
 {
   "name": "ubsub-oidc-proxy",
-  "version": "0.1.5",
+  "version": "0.1.6",
   "description": "Proxy to frontend OIDC client for ubsub and others",
   "main": "index.js",
   "bin": {
