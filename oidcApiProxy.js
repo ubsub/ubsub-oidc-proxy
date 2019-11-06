@@ -13,6 +13,7 @@ function tryParseJson(obj) {
 module.exports = function createApiProxy(target, stateCookie = 'oidcState') {
   const router = express.Router();
 
+  router.use(express.json());
   router.use(cookieParser());
 
   router.all('*', (req, res) => {
@@ -33,6 +34,8 @@ module.exports = function createApiProxy(target, stateCookie = 'oidcState') {
       headers: {
         Authorization: `Bearer ${state.access_token}`,
       },
+      params: req.query,
+      data: {},
     }).then((resp) => {
       res.status(resp.status).send(resp.data);
     }).catch((err) => {
