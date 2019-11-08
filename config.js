@@ -10,8 +10,10 @@ module.exports = require('rc')('oidcproxy', {
     // What scopes to request
     scope: 'user topic.*',
     // Where to store the token
+    // 'cookie' Store in client-accessible JSON-encoded cookie
     store: 'cookie',
     storeName: 'oidcState',
+    storeOpts: {}, // Any options for the specific store
     // If true, parse the JWT rather than passing directly
     parseToken: true,
     // Where to redirect to upon success

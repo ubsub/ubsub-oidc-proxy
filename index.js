@@ -6,6 +6,12 @@ const cookieParser = require('cookie-parser');
 const uuid = require('uuid/v4');
 const defaultConfig = require('./config');
 
+/**
+ * Middleware that can be used in express to implement a set of routes
+ * to enable OIDC authentication with ubsub
+ * @param  {object} options to override config.oidc
+ * @return {Router} Express router
+ */
 module.exports = function buildOidcProxy(opts = defaultConfig.oidc) {
   const router = express.Router();
 
@@ -67,7 +73,7 @@ module.exports = function buildOidcProxy(opts = defaultConfig.oidc) {
       });
     }).then((token) => {
       if (opts.store === 'cookie') {
-        res.cookie(opts.storeName, JSON.stringify(token));
+        res.cookie(opts.storeName, JSON.stringify(token), opts.storeOpts);
       } else if (opts.store !== 'none') {
         console.log(`WARNING: Invalid store set ${opts.store}`);
       }
