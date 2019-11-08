@@ -25,7 +25,7 @@ if (backend.static) {
   console.log(`Serving ${backend.static}...`);
   app.use(express.static(backend.static));
 } else if (backend.proxy && backend.proxy.target) {
-  console.log(`Forwarding requests to ${backend.proxy}...`);
+  console.log(`Forwarding requests to ${backend.proxy.target}...`);
 
   // eslint-disable-next-line global-require
   const proxy = require('http-proxy-middleware'); // optional dep
