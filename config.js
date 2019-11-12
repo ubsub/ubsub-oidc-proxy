@@ -9,6 +9,8 @@ module.exports = require('rc')('oidcproxy', {
     redirect_base: 'http://localhost:3050/auth',
     // What scopes to request
     scope: 'user topic.*',
+    // Options about how ubsub should display the authentication flow (eg. default, or blank)
+    layout: null,
     // Where to store the token
     // 'cookie' Store in client-accessible JSON-encoded cookie
     store: 'cookie',

@@ -39,6 +39,9 @@ module.exports = function buildOidcProxy(opts = defaultConfig.oidc) {
     uri.query.scope = opts.scope;
     uri.query.redirect_uri = `${opts.redirect_base}/validate`;
     uri.query.state = state;
+    if (opts.layout) {
+      uri.query.layout = opts.layout;
+    }
 
     res.cookie('ubsubOidcState', state, { httpOnly: true });
     res.redirect(URL.format(uri));
